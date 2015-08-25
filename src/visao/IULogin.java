@@ -1,9 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
+ * To change this license header, choose License Header
+s in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package visao;
+
+import javax.swing.JOptionPane;
+import regraDeNegocio.RNLogin;
+import valueObject.VOLogin;
 
 /**
  *
@@ -120,6 +125,18 @@ public class IULogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAcessarActionPerformed
+        if(!tfLogin.getText().equals("")){
+            VOLogin voLogin = new VOLogin(tfLogin.getText());
+            RNLogin rnLogin = new RNLogin(voLogin);
+            
+            if(rnLogin.validar())
+                JOptionPane.showMessageDialog(null, "Usuario valido!");
+            else
+                JOptionPane.showMessageDialog(null, "Usuario invalido!");
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Digite o nome do Usuario!");
+        
         if(rbChefeDepartamento.isSelected()){
             new IUChefeDepartamento().setVisible(true);
             setVisible(false);

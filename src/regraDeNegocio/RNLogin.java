@@ -16,9 +16,6 @@ public class RNLogin {
 
     private VOLogin voLogin;
 
-    public RNLogin() {
-    }
-
     public RNLogin(VOLogin voLogin) {
         this.voLogin = voLogin;
     }
