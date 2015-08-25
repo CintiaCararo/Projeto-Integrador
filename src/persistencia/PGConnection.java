@@ -32,8 +32,8 @@ public class PGConnection {
         port = "5432";
         database = "UTFPR";
         url = "jdbc:postgresql://" + host + ":" + port + "/" + database;
-        username = "mateus";
-        //password = "postgres";
+        username = "postgres";
+        password = "postgres";
     }
 
     boolean conectar() {
