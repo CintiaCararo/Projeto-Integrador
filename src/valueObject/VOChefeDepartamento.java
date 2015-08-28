@@ -10,5 +10,4 @@ package valueObject;
  * @author mateus
  */
 public class VOChefeDepartamento extends VOProfessor{
-    VODepartamento departamento;
 }

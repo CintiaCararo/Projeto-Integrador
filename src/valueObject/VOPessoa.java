@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author mateus
  */
-public class VOPessoa {
+public abstract class VOPessoa {
     
     private String nome, email1, email2, nacionalidade,
         estado_civil, CPF;
