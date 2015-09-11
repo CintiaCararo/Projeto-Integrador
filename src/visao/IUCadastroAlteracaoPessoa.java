@@ -9,12 +9,12 @@ package visao;
  *
  * @author mateus
  */
-public class IUCadastroPessoa extends javax.swing.JFrame {
+public class IUCadastroAlteracaoPessoa extends javax.swing.JFrame {
 
     /**
      * Creates new form IUCadastroPessoa
      */
-    public IUCadastroPessoa() {
+    public IUCadastroAlteracaoPessoa() {
         initComponents();
     }
 
@@ -398,20 +398,21 @@ public class IUCadastroPessoa extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IUCadastroPessoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IUCadastroAlteracaoPessoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IUCadastroPessoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IUCadastroAlteracaoPessoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IUCadastroPessoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IUCadastroAlteracaoPessoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IUCadastroPessoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IUCadastroAlteracaoPessoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IUCadastroPessoa().setVisible(true);
+                new IUCadastroAlteracaoPessoa().setVisible(true);
             }
         });
     }

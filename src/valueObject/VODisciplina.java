@@ -10,8 +10,14 @@ package valueObject;
  * @author mateus
  */
 public class VODisciplina {
-    String nome, codIdentificacao, ementa;
+    String nome, sigla, ementa;
     VODisciplina pre1, pre2, pre3;
+    int cod_disciplina;
     int numHoras;
     int numCreditos;
+    int periodo;
+    String status;
+    boolean obrigatoria;
+    VOProfessor voProfessor;
+    
 }

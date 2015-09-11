@@ -12,8 +12,7 @@ import java.util.List;
  * @author mateus
  */
 public class VOCurso {
-    String nome, codIdentificacao;
-    int numHorasTotais;
-    int numcreditosTotais;
-    List<VODisciplina> disciplinasObrigatorias;
+    String nome, sigla;
+    int cod_curso;
+    List<VODisciplina> disciplinas;
 }

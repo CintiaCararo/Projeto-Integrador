@@ -1,14 +1,16 @@
 /*
  * To change this license header, choose License Header
-s in Project Properties.
+ s in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package visao;
 
 import javax.swing.JOptionPane;
-import regraDeNegocio.RNLogin;
-import valueObject.VOLogin;
+import regraDeNegocio.RNAluno;
+import regraDeNegocio.RNProfessor;
+import valueObject.VOAluno;
+import valueObject.VOProfessor;
 
 /**
  *
@@ -39,8 +41,7 @@ public class IULogin extends javax.swing.JFrame {
         pnOpcoes = new javax.swing.JPanel();
         rbAluno = new javax.swing.JRadioButton();
         rbProfessor = new javax.swing.JRadioButton();
-        rbChefeDepartamento = new javax.swing.JRadioButton();
-        rbSecretaria = new javax.swing.JRadioButton();
+        rbFuturoAluno = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,11 +61,7 @@ public class IULogin extends javax.swing.JFrame {
         buttonGroup1.add(rbProfessor);
         rbProfessor.setText("Professor");
 
-        buttonGroup1.add(rbChefeDepartamento);
-        rbChefeDepartamento.setText("Chefe de Departamento");
-
-        buttonGroup1.add(rbSecretaria);
-        rbSecretaria.setText("Secretaria");
+        rbFuturoAluno.setText("Futuro Aluno");
 
         javax.swing.GroupLayout pnOpcoesLayout = new javax.swing.GroupLayout(pnOpcoes);
         pnOpcoes.setLayout(pnOpcoesLayout);
@@ -75,9 +72,8 @@ public class IULogin extends javax.swing.JFrame {
                 .addGroup(pnOpcoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rbAluno)
                     .addComponent(rbProfessor)
-                    .addComponent(rbChefeDepartamento)
-                    .addComponent(rbSecretaria))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(rbFuturoAluno))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         pnOpcoesLayout.setVerticalGroup(
             pnOpcoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,9 +83,7 @@ public class IULogin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rbProfessor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rbChefeDepartamento)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rbSecretaria)
+                .addComponent(rbFuturoAluno)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -116,7 +110,7 @@ public class IULogin extends javax.swing.JFrame {
                     .addComponent(tfLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(pnOpcoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btAcessar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -126,22 +120,36 @@ public class IULogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAcessarActionPerformed
-        if(!tfLogin.getText().equals("")){
-            VOLogin voLogin = new VOLogin(tfLogin.getText());
-            RNLogin rnLogin = new RNLogin(voLogin);
-            
-            if(rnLogin.validar())
-                JOptionPane.showMessageDialog(null, "Usuario valido!");
-            else
-                JOptionPane.showMessageDialog(null, "Usuario invalido!");
+        if (rbFuturoAluno.isSelected()) {
+            new IUCadastroAlteracaoPessoa().setVisible(true);
+        } else if (tfLogin.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Digite o RA/matrícula!");
+        } else if (rbAluno.isSelected()) {
+            VOAluno voAluno = new RNAluno().consultar(tfLogin.getText());
+            if (voAluno != null) {
+                new IUAluno().setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Aluno não cadastrado!");
+            }
+        } else if (rbProfessor.isSelected()) {
+            VOProfessor voProfessor = new RNProfessor().consultar(tfLogin.getText());
+            if (voProfessor != null) {
+                if (voProfessor.isChefeDepartamento()) {
+                    new IUChefeDepartamento().setVisible(true);
+                } else {
+                    new IUProfessor().setVisible(true);
+                }
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Professor não cadastrado!");
+            }
         }
-        else
-            JOptionPane.showMessageDialog(null, "Digite o nome do Usuario!");
-        
-        if(rbChefeDepartamento.isSelected()){
-            new IUChefeDepartamento().setVisible(true);
-            setVisible(false);
-        }
+
+        /*if(rbChefeDepartamento.isSelected()){
+         new IUChefeDepartamento().setVisible(true);
+         setVisible(false);
+         }*/
     }//GEN-LAST:event_btAcessarActionPerformed
 
     /**
@@ -158,16 +166,21 @@ public class IULogin extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IULogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IULogin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IULogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IULogin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IULogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IULogin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IULogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IULogin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -185,9 +198,8 @@ public class IULogin extends javax.swing.JFrame {
     private javax.swing.JLabel lbLogin;
     private javax.swing.JPanel pnOpcoes;
     private javax.swing.JRadioButton rbAluno;
-    private javax.swing.JRadioButton rbChefeDepartamento;
+    private javax.swing.JRadioButton rbFuturoAluno;
     private javax.swing.JRadioButton rbProfessor;
-    private javax.swing.JRadioButton rbSecretaria;
     private javax.swing.JTextField tfLogin;
     // End of variables declaration//GEN-END:variables
 }

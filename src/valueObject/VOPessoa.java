@@ -19,4 +19,5 @@ public abstract class VOPessoa {
     Date data_de_nascimento;
     VOTelefone tel1, tel2, tel3;
     VOEndereco endereco;
+    private int cod_pessoa;
 }

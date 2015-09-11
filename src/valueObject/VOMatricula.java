@@ -9,5 +9,8 @@ package valueObject;
  *
  * @author mateus
  */
-public class VOChefeDepartamento extends VOProfessor{
+public class VOMatricula {
+    double nota1, nota2;
+    VODisciplina voDisciplina;
+    VOAluno voAluno;
 }

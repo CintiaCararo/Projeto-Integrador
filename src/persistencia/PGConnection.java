@@ -24,8 +24,8 @@ public class PGConnection {
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PersLogin.class.getName()).log(Level.SEVERE,
-                    "org.postgresql.Driver not found", ex);
+            System.out.println(
+                    "org.postgresql.Driver not found: " + ex);
         }
 
         host = "localhost";
@@ -37,26 +37,22 @@ public class PGConnection {
     }
 
     boolean conectar() {
-        if (db == null) {
-            try {
-                db = DriverManager.getConnection(url, username, password);
-            } catch (SQLException ex) {
-                Logger.getLogger(PersLogin.class.getName()).log(Level.SEVERE,
-                        "DriverManager.getConnection fail", ex);
-                return false;
-            }
+        try {
+            db = DriverManager.getConnection(url, username, password);
+        } catch (SQLException ex) {
+            System.out.println(
+                    "DriverManager.getConnection fail " + ex);
+            return false;
         }
         return true;
     }
 
     void desconectar() {
-        if (db != null) {
-            try {
-                db.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(PersLogin.class.getName()).log(Level.SEVERE,
-                        "DriverManager.getConnection fail", ex);
-            }
+        try {
+            db.close();
+        } catch (SQLException ex) {
+            System.out.println(
+                    "DriverManager.getConnection fail " + ex);
         }
     }
 

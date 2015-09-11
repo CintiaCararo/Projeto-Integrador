@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class VODepartamento {
     String nome, areaDeAtuacao;
+    int cod_departamento;
     List<VOProfessor> professores;
     List<VODisciplina> disciplinas;
-    VOChefeDepartamento chefeDepartamento;
 }

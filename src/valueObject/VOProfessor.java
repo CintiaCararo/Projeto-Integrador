@@ -9,7 +9,13 @@ package valueObject;
  *
  * @author mateus
  */
-public class VOProfessor {
+public class VOProfessor extends VOPessoa {
+
     private String matricula;
-    VODepartamento departamento;
+    private VODepartamento departamento;
+    private boolean isCHefe, isHabilitadoCFE;
+
+    public boolean isChefeDepartamento() {
+        return true;
+    }
 }
